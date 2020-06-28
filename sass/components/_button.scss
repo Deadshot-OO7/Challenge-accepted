@@ -1,0 +1,138 @@
+
+.btn-inline{
+  border: none; 
+  font-size: inherit;
+  color: var(--color-Primary);   
+
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px; 
+  margin-left: -4 rem;  
+  margin-right: .5rem;       //for location icon 
+  display: inline-block;
+  background-color: transparent; 
+  cursor: pointer;
+  transition: all .2s;
+
+  & span{
+    margin-left: 3px;
+    transition: margin-left .2s;  
+  }
+    
+
+  &:hover{ 
+    color: black;
+    animation: pulse 1s infinite; 
+    
+    & ~ .overview__icon-location{
+      fill: black;       
+      animation: pulse 1s infinite;   
+    }
+
+    span{
+      margin-left: 8px;
+    }
+
+  }  
+  &:focus{        
+    color: blue;
+    animation: none; 
+    outline: none;
+    & ~ .overview__icon-location{
+      fill:blue;   
+      animation: none;
+    }
+  } 
+       
+}    
+
+@keyframes pulse
+{
+  0%{
+    transform: scale(1);
+    box-shadow: none;
+  }
+  50%{
+    transform: scale(1.05);     
+  }
+  100%{
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+/////////////////////// 
+//btn
+
+.btn{
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  border-radius: 5rem;
+  border: none;
+  background-image: linear-gradient(to right,var(--color-Primary-light),var(--color-Primary-dark));
+  color: white;
+  cursor: pointer; 
+
+  position: relative; 
+  overflow: hidden;             //Hiding invisible part
+
+  @media only screen and (max-width:$bp-smallest){
+    font-size: 1.2rem;   
+       
+  } 
+  
+
+  &>*{
+   
+    transition: all .2s;
+    display: inline-block; 
+  }
+
+  &__visible{                   //Fixed
+    padding: 2rem 7.5rem;       //This padding going to define the size of button. 
+
+    
+  @media only screen and (max-width:$bp-smallest){
+    padding: 1.5rem 4.5rem;       //This padding going to define the size of button.     
+ 
+  } 
+  }
+
+  &__invisible{                //going to animate
+    padding: 2rem 0;     
+    height: 100%;             //Giving dimension same as button  
+    width: 100%;   
+
+    position: absolute;
+    left: 0;
+    top: -100%;    
+
+    @media only screen and (max-width:$bp-smallest){
+      top:-130%;           
+    }    
+    
+     
+  }
+
+  &:hover{
+    background-image: linear-gradient(to left,var(--color-Primary-light),var(--color-Primary-dark));
+  }   
+ 
+  &:hover &__visible{
+    transform: translateY(100%);   
+  }
+
+  &:hover &__invisible{ 
+    top: 0;   
+
+    @media only screen and (max-width:$bp-smallest){
+      top:-12%;           
+    }      
+  }          
+       
+  &:focus{  
+    outline: none;
+    animation: pulse .8s infinite;       
+  }
+  
+}    
